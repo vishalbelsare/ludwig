@@ -37,7 +37,7 @@ def expected_seq_size(
     kernel_size: int,  # conv1d kernel size
     stride: int,  # conv1d stride
     dilation: int,  # conv1d dilation rate
-    pool_size: None | int,  # pooling layer kernel size
+    pool_size: int | None,  # pooling layer kernel size
     pool_padding: str,  # pooling layer padding: 'same' or 'valid'
     pool_stride: int,  # pooling layer stride
 ) -> int:
@@ -79,7 +79,7 @@ def test_conv1d_layer(
     strides: int,
     padding: str,
     dilation: int,
-    pool_size: None | int,
+    pool_size: int | None,
     pool_padding: str,
     pool_stride: int,
     pool_function: str,
@@ -132,7 +132,7 @@ def test_conv1d_layer(
         ([{"num_filters": NUM_FILTERS - 2}, {"num_filters": NUM_FILTERS + 2}], None),  # 2 custom layers
     ],
 )
-def test_conv1d_stack(layers: None | list, num_layers: None | int, dropout: float) -> None:
+def test_conv1d_stack(layers: list | None, num_layers: int | None, dropout: float) -> None:
     # make test repeatable
     torch.manual_seed(RANDOM_SEED)
 
@@ -207,7 +207,7 @@ def test_conv1d_stack(layers: None | list, num_layers: None | int, dropout: floa
         [{"filter_size": 3}, {"filter_size": 4}],  # custom parallel layers
     ],
 )
-def test_parallel_conv1d(layers: None | list) -> None:
+def test_parallel_conv1d(layers: list | None) -> None:
     input = torch.randn([BATCH_SIZE, SEQ_SIZE, HIDDEN_SIZE], dtype=torch.float32)
 
     parallel_conv1d = ParallelConv1D(
@@ -274,7 +274,7 @@ TEST_FILTER_SIZE1 = 5
         ],
     ],
 )
-def test_parallel_conv1d_stack(stacked_layers: None | list, dropout: float) -> None:
+def test_parallel_conv1d_stack(stacked_layers: list | None, dropout: float) -> None:
     # make repeatable
     torch.manual_seed(RANDOM_SEED)
 

@@ -234,7 +234,7 @@ def ecd_config_dict_llm_encoder_8bit(
 )
 @pytest.mark.parametrize("config_type", ["dict", "object"])
 def test_get_quantization(
-    config: dict[str, Any], expectation: int | list[int] | None | list[None], config_type: str, request
+    config: dict[str, Any], expectation: int | list[int] | list[None] | None, config_type: str, request
 ):
     """Test get_quantization with LLM and single-feature ECD configs.
 

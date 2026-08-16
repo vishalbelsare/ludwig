@@ -820,7 +820,7 @@ def test_llm_quantization_config(bits: int | None, expected_qconfig: Quantizatio
     ],
 )
 def test_llm_rope_scaling_failure_modes(
-    rope_scaling_config: None | dict[str, Any],
+    rope_scaling_config: dict[str, Any] | None,
 ):
     config = {
         MODEL_TYPE: MODEL_LLM,

@@ -144,7 +144,7 @@ def get_image_read_mode_from_num_channels(num_channels: int) -> ImageReadMode:
 @DeveloperAPI
 def read_image_from_path(
     path: str, num_channels: int | None = None, return_num_bytes=False
-) -> torch.Tensor | None | tuple[torch.Tensor | None, int]:
+) -> torch.Tensor | tuple[torch.Tensor | None, int] | None:
     """Reads image from path.
 
     Useful for reading from a small number of paths. For more intensive reads, use backend.read_binary_files instead. If

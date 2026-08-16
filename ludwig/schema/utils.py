@@ -895,7 +895,7 @@ def ActivationOptions(default: str | None = "relu", description=None, parameter_
 
 
 @DeveloperAPI
-def ReductionOptions(default: None | str = None, description="", parameter_metadata: ParameterMetadata = None):
+def ReductionOptions(default: str | None = None, description="", parameter_metadata: ParameterMetadata = None):
     """Utility wrapper that returns a `StringOptions` field with keys from `reduce_mode_registry`."""
     return StringOptions(
         list(reduce_mode_registry.keys()),
@@ -908,7 +908,7 @@ def ReductionOptions(default: None | str = None, description="", parameter_metad
 
 @DeveloperAPI
 def RegularizerOptions(
-    default: None | str,
+    default: str | None,
     allow_none: bool = False,
     description="",
     parameter_metadata: ParameterMetadata = None,
@@ -926,7 +926,7 @@ def RegularizerOptions(
 @DeveloperAPI
 def String(
     description: str,
-    default: None | str,
+    default: str | None,
     allow_none: bool = False,
     pattern: str | None = None,
     parameter_metadata: ParameterMetadata = None,
@@ -954,7 +954,7 @@ def String(
 @DeveloperAPI
 def StringOptions(
     options: list[str],
-    default: None | str,
+    default: str | None,
     allow_none: bool = False,
     description: str = "",
     parameter_metadata: ParameterMetadata = None,
@@ -1005,7 +1005,7 @@ def ProtectedString(
 @DeveloperAPI
 def IntegerOptions(
     options: list[int],
-    default: None | int,
+    default: int | None,
     allow_none: bool = False,
     description: str = "",
     parameter_metadata: ParameterMetadata = None,
@@ -1042,7 +1042,7 @@ def Boolean(default: bool, description: str = "", parameter_metadata: ParameterM
 
 @DeveloperAPI
 def Integer(
-    default: None | int,
+    default: int | None,
     allow_none=False,
     description="",
     parameter_metadata: ParameterMetadata = None,
@@ -1061,7 +1061,7 @@ def Integer(
 @DeveloperAPI
 def PositiveInteger(
     description: str,
-    default: None | int,
+    default: int | None,
     allow_none: bool = False,
     parameter_metadata: ParameterMetadata = None,
 ):
@@ -1080,7 +1080,7 @@ def PositiveInteger(
 @DeveloperAPI
 def NonNegativeInteger(
     description: str,
-    default: None | int,
+    default: int | None,
     allow_none: bool = False,
     parameter_metadata: ParameterMetadata = None,
 ):
@@ -1099,7 +1099,7 @@ def NonNegativeInteger(
 @DeveloperAPI
 def IntegerRange(
     description: str,
-    default: None | int,
+    default: int | None,
     allow_none: bool = False,
     parameter_metadata: ParameterMetadata = None,
     min: int | None = None,
@@ -1131,7 +1131,7 @@ def IntegerRange(
 
 @DeveloperAPI
 def Float(
-    default: None | float | int,
+    default: float | int | None,
     allow_none=False,
     description="",
     parameter_metadata: ParameterMetadata = None,
@@ -1149,7 +1149,7 @@ def Float(
 
 @DeveloperAPI
 def NonNegativeFloat(
-    default: None | float,
+    default: float | None,
     allow_none: bool = False,
     description: str = "",
     max: float | None = None,
@@ -1175,7 +1175,7 @@ def NonNegativeFloat(
 
 @DeveloperAPI
 def FloatRange(
-    default: None | float,
+    default: float | None,
     allow_none: bool = False,
     description: str = "",
     parameter_metadata: ParameterMetadata = None,
@@ -1204,7 +1204,7 @@ def FloatRange(
 
 @DeveloperAPI
 def Dict(
-    default: None | dict = None,
+    default: dict | None = None,
     allow_none: bool = True,
     description: str = "",
     parameter_metadata: ParameterMetadata = None,
@@ -1231,7 +1231,7 @@ def Dict(
 def List(
     list_type: type[str] | type[int] | type[float] | type[list] = str,
     inner_type: type[str] | type[int] | type[float] | type[dict] = float,
-    default: None | list[Any] = None,
+    default: list[Any] | None = None,
     allow_none: bool = True,
     description: str = "",
     parameter_metadata: ParameterMetadata = None,
@@ -1252,7 +1252,7 @@ def List(
 
 @DeveloperAPI
 def DictList(
-    default: None | list[dict] = None,
+    default: list[dict] | None = None,
     allow_none: bool = True,
     description: str = "",
     parameter_metadata: ParameterMetadata = None,

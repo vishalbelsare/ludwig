@@ -293,7 +293,7 @@ class ECDTrainerConfig(BaseTrainerConfig):
         parameter_metadata=TRAINER_METADATA[MODEL_ECD]["early_stop"],
     )
 
-    eval_batch_size: None | int | str = schema_utils.OneOfOptionsField(
+    eval_batch_size: int | str | None = schema_utils.OneOfOptionsField(
         default=None,
         allow_none=True,
         description=(

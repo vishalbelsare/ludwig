@@ -71,8 +71,8 @@ def test_sequence_encoders(
     enc_cell_type: str,
     enc_dropout: float,
     enc_num_layers: int,
-    enc_norm: None | str,
-    enc_reduce_output: None | str,
+    enc_norm: str | None,
+    enc_reduce_output: str | None,
     input_sequence: torch.Tensor,
 ):
     # update encoder parameters for specific unit test case

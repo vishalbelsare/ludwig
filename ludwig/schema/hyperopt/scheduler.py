@@ -438,7 +438,7 @@ class ResourceChangingSchedulerConfig(BaseSchedulerConfig):
 
     type: str = schema_utils.ProtectedString("resource_changing")
 
-    base_scheduler: str | None | Callable = schema_utils.String(
+    base_scheduler: str | Callable | None = schema_utils.String(
         default=None,
         allow_none=True,
         description=("The scheduler to provide decisions about trials. If None, a default FIFOScheduler will be used."),
