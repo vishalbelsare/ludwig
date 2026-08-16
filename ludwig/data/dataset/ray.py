@@ -36,7 +36,7 @@ from ludwig.data.batcher.base import Batcher
 from ludwig.data.dataset.base import Dataset, DatasetManager
 from ludwig.utils.data_utils import DATA_TRAIN_HDF5_FP, DATA_TRAIN_PARQUET_FP
 from ludwig.utils.defaults import default_random_seed
-from ludwig.utils.fs_utils import get_fs_and_path
+from ludwig.utils.fs_utils import get_fs_and_path, has_remote_protocol
 from ludwig.utils.misc_utils import get_proc_features
 from ludwig.utils.types import DataFrame, Series
 
@@ -76,8 +76,13 @@ def _make_lazy_decode_batch_fn(col: str, decode_fn):
 
 
 def read_remote_parquet(path: str):
-    fs, path = get_fs_and_path(path)
-    return read_parquet(path, filesystem=PyFileSystem(FSSpecHandler(fs)))
+    fs, resolved = get_fs_and_path(path)
+    # Ray Data 2.56+ resolves paths on remote workers whose CWD may differ from
+    # the caller's.  Convert relative local paths to absolute so the path is
+    # unambiguous regardless of where the worker runs.
+    if not has_remote_protocol(path) and not os.path.isabs(resolved):
+        resolved = os.path.abspath(resolved)
+    return read_parquet(resolved, filesystem=PyFileSystem(FSSpecHandler(fs)))
 
 
 class RayDataset(Dataset):
